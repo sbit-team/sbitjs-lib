@@ -1,5 +1,5 @@
 import assert from "assert";
-import {Apis, ChainConfig} from "bitsharesjs-ws";
+import {Apis, ChainConfig} from "sbitjs-ws";
 import { FetchChain, ChainStore } from "../../lib";
 
 var coreAsset;
@@ -7,7 +7,6 @@ var coreAsset;
 describe("ChainStore", () => {
     // Connect once for all tests
     before(function() {
-        /* use wss://bitshares.openledger.info/ws if no local node is available */
         return Apis.instance("ws://127.0.0.1:8090", true).init_promise.then(function (result) {
             coreAsset = result[0].network.core_asset;
             ChainStore.init();
