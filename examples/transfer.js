@@ -1,10 +1,10 @@
 import { Apis } from "sbitjs-ws";
 import { ChainStore, FetchChain, PrivateKey, TransactionHelper, Aes, TransactionBuilder } from "../lib";
 
-var privKey = "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3";
+var privKey = "5KUNaHFinDenZXE3A7BB4YKFRJfnNEPpJWB3wG6N2RyaekEDAye";
 let pKey = PrivateKey.fromWif(privKey);
 
-Apis.instance("ws://127.0.0.1:8090/ws", true)
+Apis.instance("wss://sbit.pixelplex.io/ws", true)
     .init_promise.then((res) => {
         console.log("connected to:", res[0].network_name, "network");
         ChainStore.init().then(() => {

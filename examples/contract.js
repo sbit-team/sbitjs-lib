@@ -1,10 +1,10 @@
 import { Apis } from "sbitjs-ws";
 import { ChainStore, FetchChain, PrivateKey, TransactionBuilder } from "../lib";
 
-var privKey = "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3";
+var privKey = "5KUNaHFinDenZXE3A7BB4YKFRJfnNEPpJWB3wG6N2RyaekEDAye";
 let pKey = PrivateKey.fromWif(privKey);
 
-Apis.instance("ws://127.0.0.1:8090/ws", true)
+Apis.instance("wss://sbit.pixelplex.io/ws", true)
     .init_promise.then((res) => {
         ChainStore.init().then(() => {
             let fromAccount = "nathan";
@@ -34,13 +34,13 @@ Apis.instance("ws://127.0.0.1:8090/ws", true)
                         amount: 0,
                         asset_id: feeAsset.get("id")
                     },
-                    asset_id: "1.3.0",
+                    asset_id: feeAsset.get("id"),
                     registrar: fromAccount.get("id"),
-                    receiver: "1.16.0",
+                    receiver: "1.16.8", // undefined if creating contract
                     value: 0,
                     gasPrice: 0,
                     gas: 1000000,
-                    code: "60606040527f4b0841b00539dff7fbbebc87eed9dbac2eb700c69f811fe91eb05975ecd8184b600055341561003057fe5b5b60978061003f6000396000f300606060405263ffffffff60e060020a6000350416635cbe77c78114602a578063b9c3d0a514604e575bfe5b3415603157fe5b603a600435605d565b604080519115158252519081900360200190f35b3415605557fe5b605b6068565b005b60005481145b919050565b5b5600a165627a7a7230582044cad05ef09e01201368f32c88e23aadb921e8170ccd58739efb0a98df9e41660029",
+                    code: "c07aaf0f",
                 });
                 tr.set_required_fees().then(() => {
                     tr.add_signer(pKey, pKey.toPublicKey().toPublicKeyString());

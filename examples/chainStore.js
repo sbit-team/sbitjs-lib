@@ -1,7 +1,7 @@
 import {Apis} from "sbitjs-ws";
 import {ChainStore} from "../lib";
 
-Apis.instance("ws://127.0.0.1:8090/ws", true).init_promise.then((res) => {
+Apis.instance("wss://sbit.pixelplex.io/ws", true).init_promise.then((res) => {
     console.log("connected to:", res[0].network);
     ChainStore.init().then(() => {
         ChainStore.subscribe(updateState);

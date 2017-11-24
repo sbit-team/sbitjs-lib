@@ -1,11 +1,11 @@
 import { Apis } from "sbitjs-ws";
 import { ChainStore, FetchChain, PrivateKey, TransactionBuilder } from "../lib";
 
-var privKey = "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3";
+var privKey = "5KUNaHFinDenZXE3A7BB4YKFRJfnNEPpJWB3wG6N2RyaekEDAye";
 let pKey = PrivateKey.fromWif(privKey);
 let appKey = PrivateKey.fromWif("5KUNaHFinDenZXE3A7BB4YKFRJfnNEPpJWB3wG6N2RyaekEDAye");
 
-Apis.instance("ws://127.0.0.1:8090/ws", true)
+Apis.instance("wss://sbit.pixelplex.io/ws", true)
     .init_promise.then((res) => {
         console.log("connected to:", res[0].network_name, "network");
         ChainStore.init().then(() => {
@@ -26,13 +26,13 @@ Apis.instance("ws://127.0.0.1:8090/ws", true)
                         amount: 0,
                         asset_id: "1.3.0"
                     },
+                    asset_id: "1.3.0",
                     registrar: fromAccount.get("id"),
-                    receiver: "1.16.1",
-                    
+                    receiver: "1.16.8",
                     value: 0,
                     gasPrice: 0,
                     gas: 100000,
-                    code: "",
+                    code: "c07aaf0f",
                     app: appKey.toPublicKey().toPublicKeyString()
                 });
                 tr.set_required_fees().then(() => {
